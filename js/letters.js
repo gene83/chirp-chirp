@@ -35,23 +35,17 @@ var counter = {
 };
 
 function countLetters(counter, sample_text) {
-  if (sample_text.length === 1) {
-    counter[sample_text]++;
+  if (sample_text.length === 0) {
     return;
   }
-  let text = sample_text.toLowerCase();
-  let textArray = text.split("");
-  let currentChar = textArray.pop();
-  if (
-    currentChar !== " " &&
-    currentChar !== "." &&
-    currentChar !== "," &&
-    currentChar !== "\n"
-  ) {
+
+  let currentChar = sample_text.slice(0, 1).toLowerCase();
+
+  if (currentChar in counter) {
     counter[currentChar]++;
   }
-  textString = textArray.join("");
-  countLetters(counter, textString);
+
+  countLetters(counter, sample_text.slice(1));
 }
 
 $(document).ready(function() {
